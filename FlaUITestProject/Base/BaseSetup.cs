@@ -1,6 +1,7 @@
 ﻿using FlaUI.Core.Input;
-using FlaUIPoC.AgencyCloud.Window.MainLoginWindow;
+using FlaUIPoC.Reapit.Window.MainLoginWindow;
 using FlaUIPoC.Base;
+using FlaUIPoC.Reapit.Window.MainLoginWindow;
 using static AutomationHelper;
 
 public class BaseSetup
@@ -21,14 +22,14 @@ public class BaseSetup
         MaximiseWindow();
     }
 
-   [TearDown]
+    [TearDown]
     public void TearDown()
     {
-        App?.Cleanup();
+        // App?.Cleanup();
     }
 
     private void MaximiseWindow()
     {
-      AutomationHelper.ClickButton(MainWindow.Window, IdentifyElement.byId, "btnMaximise");
+        AutomationHelper.ClickButton(MainWindow.Window, IdentifyElement.byId, "btnMaximise");
     }
 }

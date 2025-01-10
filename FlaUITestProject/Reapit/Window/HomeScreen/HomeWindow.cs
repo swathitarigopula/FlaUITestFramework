@@ -3,14 +3,14 @@ using FlaUI.Core.Input;
 using NUnit.Framework.Constraints;
 using static AutomationHelper;
 
-namespace FlaUIPoC.AgencyCloud.Window.Login
+namespace FlaUIPoC.Reapit.Window.Login
 {
-    public class HomeScreenWindow
+    public class HomeWindow
     {
         private readonly FlaUI.Core.AutomationElements.Window _window;
         private readonly AutomationElement _homeScreenWindow;
 
-        public HomeScreenWindow(FlaUI.Core.AutomationElements.Window window)
+        public HomeWindow(FlaUI.Core.AutomationElements.Window window)
         {
             Wait.UntilResponsive(window);
             _window = window;
@@ -20,7 +20,7 @@ namespace FlaUIPoC.AgencyCloud.Window.Login
 
         public void ClickMainMenuItem(string menuItemName)
         {
-            switch(menuItemName)
+            switch (menuItemName)
             {
                 case "Organiser":
                     break;
@@ -40,7 +40,8 @@ namespace FlaUIPoC.AgencyCloud.Window.Login
                     break;
                 case "Company":
                     break;
-                case "Reports": 
+                case "Reports":
+                    AutomationHelper.ClickButton(_window, IdentifyElement.byId, "aid_btnReports");
                     break;
                 default:
                     new ArgumentOutOfRangeException("Menu item not found!");
@@ -50,7 +51,7 @@ namespace FlaUIPoC.AgencyCloud.Window.Login
 
         public void ClickCloseButton()
         {
-            AutomationHelper.ClickButton(_window,IdentifyElement.byId, "aid_btnClose");
+            AutomationHelper.ClickButton(_window, IdentifyElement.byId, "aid_btnClose");
         }
     }
 }

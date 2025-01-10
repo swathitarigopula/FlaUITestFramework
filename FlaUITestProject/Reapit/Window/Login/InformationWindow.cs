@@ -2,7 +2,7 @@
 using FlaUI.Core.Input;
 using static AutomationHelper;
 
-namespace FlaUIPoC.AgencyCloud.Window.Login
+namespace FlaUIPoC.Reapit.Window.Login
 {
     public class InformationWindow
     {

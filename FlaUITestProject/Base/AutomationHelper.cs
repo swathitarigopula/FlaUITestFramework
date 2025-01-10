@@ -48,7 +48,7 @@ public static class AutomationHelper
 
         }
         while (count < 6 && elementFound == false);
-        Assert.IsTrue(WaitForElementEnabled(element));        
+        Assert.IsTrue(WaitForElementEnabled(element));
         return element;
     }
 
@@ -61,22 +61,26 @@ public static class AutomationHelper
                                  ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.Button)))
                                  ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.Text)))
                                  ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.Edit)))
-                                 ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.Custom))),
+                                 ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.Custom)))
+                                 ?? window.FindFirstDescendant(cf => cf.ByName(elementIdValue).And(cf.ByControlType(ControlType.RadioButton))),
             SearchType.ById => window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.ListItem)))
                                   ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.Button)))
                                   ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.Text)))
                                   ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.Edit)))
-                                  ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.Custom))),
+                                  ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.Custom)))
+                                  ?? window.FindFirstDescendant(cf => cf.ByAutomationId(elementIdValue).And(cf.ByControlType(ControlType.RadioButton))),
             SearchType.ByClassName => window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.ListItem)))
                                   ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.Button)))
                                   ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.Text)))
                                   ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.Edit)))
-                                  ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.Custom))),
+                                  ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.Custom)))
+                                  ?? window.FindFirstDescendant(cf => cf.ByClassName(elementIdValue).And(cf.ByControlType(ControlType.RadioButton))),
             SearchType.ByText => window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.ListItem)))
                                   ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.Button)))
                                   ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.Text)))
                                   ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.Edit)))
-                                  ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.Custom))),
+                                  ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.Custom)))
+                                  ?? window.FindFirstDescendant(cf => cf.ByText(elementIdValue).And(cf.ByControlType(ControlType.RadioButton))),
             _ => throw new ArgumentOutOfRangeException(nameof(elementIdType), elementIdType, null)
         };
     }
@@ -101,18 +105,24 @@ public static class AutomationHelper
     public static void ClickButton(Window window, SearchType elementIdType, string elementIdValue)
     {
         var button = FindAndWaitForElement(window, elementIdType, elementIdValue)?.AsButton();
-        button?.Invoke();
+        button?.Click();
+    }
+
+    public static void ClickRadioButton(Window window, SearchType elementIdType, string elementIdValue)
+    {
+        var button = FindAndWaitForElement(window, elementIdType, elementIdValue)?.AsRadioButton();
+        button?.Click();
     }
 
     public static void MoveMouseToElementAndLeftClick(Window window, SearchType elementIdType, string elementIdValue)
     {
         var element = FindAndWaitForElement(window, elementIdType, elementIdValue)?.AsButton();
         var clickablePoint = element.GetClickablePoint();
-        var xPoint = element.ActualWidth-20;
+        var xPoint = element.ActualWidth - 20;
         var midPoint = element.ActualHeight / 2;
         var yPoint = clickablePoint.Y - midPoint;
         yPoint = yPoint + 2;
-        Mouse.MoveTo(new Point((int)xPoint,(int)yPoint));
+        Mouse.MoveTo(new Point((int)xPoint, (int)yPoint));
         Mouse.LeftClick();
     }
 
@@ -140,7 +150,7 @@ public static class AutomationHelper
 
     public static void EnterText(Window windowName, SearchType elementIdType, string elementIdValue, string textToEnter)
     {
-        
+
         var textBox = FindAndWaitForElement(windowName, elementIdType, elementIdValue)?.AsTextBox();
         if (textBox != null)
         {
@@ -161,7 +171,12 @@ public static class AutomationHelper
         return textBox?.Name;
     }
 
-   
+    public static bool CheckIfRadioButtonIsSelected(Window window, SearchType elementIdType, string elementIdValue)
+    {
+        var radioButton = FindAndWaitForElement(window, elementIdType, elementIdValue)?.AsRadioButton();
+        return radioButton.IsChecked;
+    }
+
 
     public static bool IsElementEnabled(Window window, SearchType elementIdType, string elementIdValue)
     {
@@ -208,7 +223,7 @@ public static class AutomationHelper
     {
         var random = new Random();
         string s = string.Empty;
-        for (int i = 0; i < (length-2); i++)
+        for (int i = 0; i < (length - 2); i++)
         {
             s = String.Concat(s, random.Next(10).ToString());
         }

@@ -1,13 +1,13 @@
-﻿namespace FlaUIPoC.AgencyCloud.Tests.Contacts
+﻿namespace FlaUIPoC.Reapit.Tests.Contacts
 {
     internal class ContactTests : BaseSetup
-    {   
+    {
 
         [Test]
         public void UsingTheContactSearchToAddANewContactRecordToTheSystem()
         {
             DateTime startTime = DateTime.Now;
-            Console.WriteLine("Start time : "+startTime);
+            Console.WriteLine("Start time : " + startTime);
 
             // step	1. Given I am logged in as Test User	AC is open with the Home screen showing
             var loginPage = MainWindow.LoginScreen;
@@ -26,8 +26,8 @@
             //step	7. And I click the Search button	Then the 'Adding New Contact...' screen appears And the <Surname> added populates the Surname field And the entered <Mobile Phone Number> shows against the Mobile entry in the Contact Details section							
             var addingNewContactDialogue = MainWindow.AddingNewContactDialogue;
             var mobileNum = AutomationHelper.RandomNumberGenerator(11);
-            addingNewContactDialogue.EnterTheSearchDetails(mobileNum);            
-            var addingNewContactScreen = MainWindow.AddingNewContactScreen;
+            addingNewContactDialogue.EnterTheSearchDetails(mobileNum);
+            var addingNewContactScreen = MainWindow.AddingNewContactWindow;
             addingNewContactScreen.CheckTheMobileNumber(mobileNum);
             addingNewContactScreen.CheckingSurname(surname);
             //step	8. And I type a <Title> and <Name> in the Name section	Then the Title and Name fields populate with the entered text							
@@ -95,7 +95,7 @@
             var addingNewContactDialogue = MainWindow.AddingNewContactDialogue;
             var mobileNum = AutomationHelper.RandomNumberGenerator(11);
             addingNewContactDialogue.EnterTheSearchDetails(mobileNum);
-            var addingNewContactScreen = MainWindow.AddingNewContactScreen;
+            var addingNewContactScreen = MainWindow.AddingNewContactWindow;
             addingNewContactScreen.CheckTheMobileNumber(mobileNum);
             addingNewContactScreen.CheckingSurname(surname);
             var firstName = AutomationHelper.RandomStringGenerator(6);

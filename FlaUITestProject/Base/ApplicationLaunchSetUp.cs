@@ -7,7 +7,6 @@ namespace FlaUIPoC.Base
 {
     public class ApplicationLaunchSetUp
     {
-        //public Window Window { get; set; }
         public static Application Application { get; set; }
         public static UIA3Automation Automation { get; set; }
 
@@ -21,7 +20,6 @@ namespace FlaUIPoC.Base
             processStartInfo.UseShellExecute = false;
             processStartInfo.FileName = @"C:\\Automation\\Utility\\12_199_0_RC7\\RPS.Bootstrapper.exe";
             Application = Application.AttachOrLaunch(processStartInfo);
-           //Console.WriteLine($"Launched application with process ID: {Application.ProcessId}");
             WaitForApplicationLaunch();
         }
 

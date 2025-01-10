@@ -1,18 +1,19 @@
 ﻿using FlaUI.Core.Input;
-using FlaUIPoC.AgencyCloud.Pages.Login;
-using FlaUIPoC.AgencyCloud.Window.Contact;
-using FlaUIPoC.AgencyCloud.Window.HomeScreen;
-using FlaUIPoC.AgencyCloud.Window.Login;
+using FlaUIPoC.Reapit.Pages.Login;
+using FlaUIPoC.Reapit.Window.Contact;
+using FlaUIPoC.Reapit.Window.HomeScreen;
+using FlaUIPoC.Reapit.Window.Login;
 using FlaUIPoC.Base;
+using FlaUIPoC.Reapit.Window.Reports;
 
-namespace FlaUIPoC.AgencyCloud.Window.MainLoginWindow
+namespace FlaUIPoC.Reapit.Window.MainLoginWindow
 {
-    public class MainLoginWindow: WindowAdaptor
+    public class MainLoginWindow : WindowAdaptor
     {
 
-        public LoginScreenWindow LoginScreen
+        public LoginWindow LoginScreen
         {
-            get { return _LoginScreen ??= new LoginScreenWindow(Window);}
+            get { return _LoginWindow ??= new LoginWindow(Window); }
         }
 
         public InformationWindow InformationDialogue
@@ -20,14 +21,14 @@ namespace FlaUIPoC.AgencyCloud.Window.MainLoginWindow
             get { return _InformationDialogue ??= new InformationWindow(Window); }
         }
 
-        public HomeScreenWindow HomeScreen
+        public HomeWindow HomeScreen
         {
-            get { return _HomeScreen ??= new HomeScreenWindow(Window); }
+            get { return _HomeWindow ??= new HomeWindow(Window); }
         }
 
         public RecentSearchPanelWindow RecentSearchPanel
         {
-            get { return _RecentSearchPanel ??= new RecentSearchPanelWindow(Window); }
+            get { return _RecentSearchPanelWindow ??= new RecentSearchPanelWindow(Window); }
         }
 
         public AddingNewContactDialogueWindow AddingNewContactDialogue
@@ -35,20 +36,32 @@ namespace FlaUIPoC.AgencyCloud.Window.MainLoginWindow
             get { return _AddingNewContactDialogueWindow ??= new AddingNewContactDialogueWindow(Window); }
         }
 
-        public AddingNewContactScreenWindow AddingNewContactScreen
+        public AddingNewContactWindow AddingNewContactWindow
         {
-            get { return _AddingNewContactScreen ??= new AddingNewContactScreenWindow(Window); }
+            get { return _AddingNewContactWindow ??= new AddingNewContactWindow(Window); }
         }
 
-        LoginScreenWindow _LoginScreen;
+        public OfferReportingWindow OfferReportingWindow
+        {
+            get { return _OfferReportingWindow ??= new OfferReportingWindow(Window); }
+        }
+
+        public OffersFoundWindow OffersFoundWindow
+        {
+            get { return _OfferFoundWindow ??= new OffersFoundWindow(Window); }
+        }
+
+        LoginWindow _LoginWindow;
         ApplicationLaunchSetUp _Application;
         InformationWindow _InformationDialogue;
-        HomeScreenWindow _HomeScreen;
-        RecentSearchPanelWindow _RecentSearchPanel;
+        HomeWindow _HomeWindow;
+        RecentSearchPanelWindow _RecentSearchPanelWindow;
         AddingNewContactDialogueWindow _AddingNewContactDialogueWindow;
-        AddingNewContactScreenWindow _AddingNewContactScreen;
+        AddingNewContactWindow _AddingNewContactWindow;
+        OfferReportingWindow _OfferReportingWindow;
+        OffersFoundWindow _OfferFoundWindow;
 
-        public MainLoginWindow(ApplicationLaunchSetUp app): base(app, "MainWindow")
+        public MainLoginWindow(ApplicationLaunchSetUp app) : base(app, "MainWindow")
         {
             Wait.UntilResponsive(Window);
             _Application = app;

@@ -1,17 +1,17 @@
 ﻿using FlaUI.Core.AutomationElements;
 using FlaUI.Core.Input;
-using FlaUIPoC.AgencyCloud.Window.Login;
+using FlaUIPoC.Reapit.Window.Login;
 using static AutomationHelper;
 
-namespace FlaUIPoC.AgencyCloud.Pages.Login
+namespace FlaUIPoC.Reapit.Pages.Login
 {
-    public class LoginScreenWindow
+    public class LoginWindow
     {
         private readonly FlaUI.Core.AutomationElements.Window _window;
         private readonly AutomationElement _loginWindow;
         private readonly InformationWindow _informationWindow;
 
-        public LoginScreenWindow(FlaUI.Core.AutomationElements.Window window)
+        public LoginWindow(FlaUI.Core.AutomationElements.Window window)
         {
             Wait.UntilResponsive(window);
             _window = window;
@@ -24,7 +24,7 @@ namespace FlaUIPoC.AgencyCloud.Pages.Login
         {
             AutomationHelper.EnterText(_window, IdentifyElement.byId, "txtLogin", userName);
             AutomationHelper.EnterText(_window, IdentifyElement.byId, "txtPassword", password);
-            AutomationHelper.ClickButton(_window, IdentifyElement.byId, "btnLogin");            
+            AutomationHelper.ClickButton(_window, IdentifyElement.byId, "btnLogin");
         }
 
         //Reusable wrapper methods

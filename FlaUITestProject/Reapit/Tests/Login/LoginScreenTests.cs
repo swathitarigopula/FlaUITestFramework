@@ -1,15 +1,17 @@
-﻿using FlaUIPoC.AgencyCloud.Pages.Login;
+﻿using FlaUIPoC.Reapit.Pages.Login;
 
 
-namespace FlaUIPoC.AgencyCloud.Tests.Login
+namespace FlaUIPoC.Reapit.Tests.Login
 {
     internal class LoginScreenTests : BaseSetup
     {
+        private LoginWindow _loginScreenPage;
+
         [Test]
         public void CheckTheLoginFunctionalityWithValidCredentails()
         {
             var loginPage = MainWindow.LoginScreen;
-            loginPage.EnterLoginCredentials("ATT","password");
+            loginPage.EnterLoginCredentials("ATT", "password");
             var informationDialogue = MainWindow.InformationDialogue;
             informationDialogue.AssertMessageDetailsAndAccept("rps_demo");
         }
